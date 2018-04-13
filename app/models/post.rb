@@ -1,3 +1,3 @@
 class Post < ApplicationRecord
-  has_many :comments, depdendent: :destroy 
+  has_many :comments, dependent: :destroy 
 end
