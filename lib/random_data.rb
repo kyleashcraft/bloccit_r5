@@ -1,3 +1,5 @@
+require 'faker'
+
 module RandomData
   def self.random_paragraph
     sentences = []
@@ -19,8 +21,6 @@ module RandomData
   end
 
   def self.random_word
-    letters = ('a'..'z').to_a
-    letters.shuffle!
-    letters[0,rand(3..8)].join
+    Faker::Color.color_name
   end
 end
