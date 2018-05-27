@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'thor', '0.19.1'
 gem 'bootstrap-sass'
 gem 'faker'
+gem 'bcrypt'
 
 group :development do
   gem 'listen', '~> 3.0.5'
