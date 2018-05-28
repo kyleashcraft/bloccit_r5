@@ -14,7 +14,7 @@
 </div>
 <div class="row">
   <div class="col-md-4 text-center">
-    <%= link_to "Yes", {controller: "users", action: "create", params: {user: user_params} }, class: 'btn btn-success' %>
+    <%= link_to "Yes", {controller: "users", action: "create", params: {user: user_params} }, class: 'btn btn-success', method: 'post' %>
     <%= link_to "No", {controller: "users", action: "new"}, class: "btn btn-default", method: 'get'%>
   </div>
 </div>

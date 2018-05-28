@@ -1,22 +1,30 @@
-<div class="jumbotron">
-   <h1>Bloccit</h1>
-   <p>Bloccit is a resource for sharing links with your friends!</p>
-   <p>
-     <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
-   </p>
- </div>
+<% if current_user %>
+  <div class="jumbotron">
+    <h2>Welcome, <b><%= current_user.name %></b></h2>
+    <h3>Why don't you check out some of the latest posts?</h3>
+  </div>
+<% else %>
+  <div class="jumbotron">
+     <h1>Bloccit</h1>
+     <p>Bloccit is a resource for sharing links with your friends!</p>
+     <p>
+       <%= link_to "Sign In", new_session_path %> or
+       <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
+     </p>
+   </div>
 
- <div class="row">
-   <div class="col-md-4">
-     <h2>Free Accounts!</h2>
-     <p>Sign up and start posting today!.</p>
+   <div class="row">
+     <div class="col-md-4">
+       <h2>Free Accounts!</h2>
+       <p>Sign up and start posting today!.</p>
+     </div>
+     <div class="col-md-4">
+       <h2>Total anonymity.</h2>
+       <p>We aren't Facebook! Post at will!</p>
+     </div>
+     <div class="col-md-4">
+       <h2>Pursue your interests!</h2>
+       <p>Unlimited topics means you can find what you are interested in!</p>
+     </div>
    </div>
-   <div class="col-md-4">
-     <h2>Total anonymity.</h2>
-     <p>We aren't Facebook! Post at will!</p>
-   </div>
-   <div class="col-md-4">
-     <h2>Pursue your interests!</h2>
-     <p>Unlimited topics means you can find what you are interested in!</p>
-   </div>
- </div>
+<% end %>
