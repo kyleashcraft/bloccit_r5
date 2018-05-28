@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-8">
+    <h2>Sign Up Confirmation</h2>
+    <h4>Are you sure this information is correct?</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Name:</b> <%= @user.name %></li>
+      <li class="list-group-item"><b>Email:</b> <%= @user.email %></li>
+      <li class="list-group-item"><b>Password:</b> <%= partial_password(@user.password) %></li>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 text-center">
+    <%= link_to "Yes", {controller: "users", action: "create", params: {user: user_params} }, class: 'btn btn-success' %>
+    <%= link_to "No", {controller: "users", action: "new"}, class: "btn btn-default", method: 'get'%>
+  </div>
+</div>
