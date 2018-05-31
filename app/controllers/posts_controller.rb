@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_sign_in, except: :show
+  before_action :authorize_user, except: [:show, :new, :create]
 
   def show
     @post = Post.find(params[:id])
@@ -57,5 +58,12 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body)
   end
-  
+
+  def authorize_user
+    unless current_user.admin? || current_user == post.user
+      flash[:alert] = "You are not authorized to do that."
+      redirect_to [post.topic, post]
+    end
+  end
+
 end

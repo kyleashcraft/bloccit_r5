@@ -15,8 +15,18 @@ User.create!(
   password: "password",
   created_at: Faker::Date.between(5.days.ago, Date.today)
 )
+users = User.where(role: 'member')
 
-users = User.all
+User.create!(
+  name: 'Admin',
+  email: 'admin@bloccit.com',
+  password: 'password',
+  role: 'admin',
+  created_at: Faker::Date.between(5.days.ago, Date.today)
+)
+
+admin = User.where(role: 'admin')
+
 
 20.times do
   Topic.create!(
@@ -48,7 +58,8 @@ posts = Post.all
 end
 
 puts "Seeds finished"
-puts "#{User.count} users created"
+puts "#{users.count} members created"
+puts "#{admin.count} admin created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
