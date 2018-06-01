@@ -51,6 +51,7 @@ posts = Post.all
 
 100.times do
   Comment.create!(
+    user: User.all.sample,
     post: posts.sample,
     body: RandomData.random_paragraph,
     created_at: Faker::Date.between(5.days.ago, Date.today)

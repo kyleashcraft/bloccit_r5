@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 254 }
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   enum role: [:member, :admin]
 
