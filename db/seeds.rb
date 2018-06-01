@@ -5,7 +5,7 @@ require 'random_data'
     name: RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_password,
-    created_at: Faker::Date.between(5.days.ago, Date.today)
+    created_at: rand(10.minutes .. 1.year).ago
   )
 end
 
@@ -13,7 +13,7 @@ User.create!(
   name: "Kyle",
   email: "kyle@fake.com",
   password: "password",
-  created_at: Faker::Date.between(5.days.ago, Date.today)
+  created_at: rand(10.minutes .. 1.year).ago
 )
 users = User.where(role: 'member')
 
@@ -22,7 +22,7 @@ User.create!(
   email: 'admin@bloccit.com',
   password: 'password',
   role: 'admin',
-  created_at: Faker::Date.between(5.days.ago, Date.today)
+  created_at: rand(10.minutes .. 1.year).ago
 )
 
 admin = User.where(role: 'admin')
@@ -32,20 +32,21 @@ admin = User.where(role: 'admin')
   Topic.create!(
     name: RandomData.random_sentence,
     description: RandomData.random_sentence,
-    created_at: Faker::Date.between(5.days.ago, Date.today)
+    created_at: rand(10.minutes .. 1.year).ago
   )
 end
 
 topics = Topic.all
 
 50.times do
-  Post.create!(
+  post = Post.create!(
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph,
     user: users.sample,
-    created_at: Faker::Date.between(5.days.ago, Date.today)
+    created_at: rand(10.minutes .. 1.year).ago
   )
+  rand(1..5).times { post.votes.create!(value: [-1,1].sample, user: users.sample) }
 end
 posts = Post.all
 
@@ -54,7 +55,7 @@ posts = Post.all
     user: User.all.sample,
     post: posts.sample,
     body: RandomData.random_paragraph,
-    created_at: Faker::Date.between(5.days.ago, Date.today)
+    created_at: rand(10.minutes .. 1.year).ago
   )
 end
 
@@ -64,3 +65,4 @@ puts "#{admin.count} admin created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Vote.count} votes created"
