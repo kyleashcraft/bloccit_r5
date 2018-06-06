@@ -34,6 +34,8 @@ class Post < ApplicationRecord
   scope :ordered_by_title, -> { order('title DESC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
 
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
+
   private
   def create_vote
     user.votes.create(post: self, value: 1)
