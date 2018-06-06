@@ -27,7 +27,6 @@ User.create!(
 
 admin = User.where(role: 'admin')
 
-
 20.times do
   Topic.create!(
     name: RandomData.random_sentence,
@@ -59,6 +58,13 @@ posts = Post.all
   )
 end
 
+75.times do
+  Favorite.create!(
+    user: User.all.sample,
+    post: posts.sample
+  )
+end 
+
 puts "Seeds finished"
 puts "#{users.count} members created"
 puts "#{admin.count} admin created"
@@ -66,3 +72,4 @@ puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Vote.count} votes created"
+puts "#{Favorite.count} favorites created"

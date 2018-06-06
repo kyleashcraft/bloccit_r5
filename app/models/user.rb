@@ -11,10 +11,15 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   enum role: [:member, :admin]
 
   has_secure_password
+
+  def favorite_for(post)
+    favorites.where(post_id: post.id).first
+  end 
 
   def avatar_url(size)
     gravatar_id = Digest::MD5::hexdigest(self.email).downcase

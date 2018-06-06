@@ -2,10 +2,11 @@ class Post < ApplicationRecord
   belongs_to :topic
   belongs_to :user
 
-  after_create :create_vote
+  after_create :create_vote, :create_favorite
 
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
@@ -39,5 +40,9 @@ class Post < ApplicationRecord
   private
   def create_vote
     user.votes.create(post: self, value: 1)
+  end
+
+  def create_favorite
+    Favorite.create(post: self, user: self.user)
   end
 end
