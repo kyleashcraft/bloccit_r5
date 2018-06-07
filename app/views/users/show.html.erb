@@ -13,14 +13,30 @@
         <small>
           <%= pluralize(@user.posts.count, 'post') %>,
           <%= pluralize(@user.comments.count, 'comment') %>
+          <%= pluralize(@user.favorites.count, 'favorite') %>
         </small>
       </div>
     </div>
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if @user.posts.count %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <h2><%= @user.name %> has no posts yet.</h2>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if @user.comments.count %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <h2><%= @user.name %> has no comments yet.</h2>
+<% end %>
+
+<% if @user.favorites.count %>
+  <h3>Favorited Posts</h3>
+  <%= render partial: 'favorites/favorited_posts', collection: @user.favorites, as: :favorite%>
+<% else %>
+  <h2><%= @user.name %> has not favorited anything.</h2>
+<% end %>
